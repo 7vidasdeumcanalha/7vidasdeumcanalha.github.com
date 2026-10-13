@@ -1,1 +1,1 @@
-import {defineConfig} from "vite";import react from "@vitejs/plugin-react";export default defineConfig({plugins:[react()],build:{target:"chrome90",outDir:"docs",emptyOutDir:true}});
+import {defineConfig} from "vite";import react from "@vitejs/plugin-react";export default defineConfig({plugins:[react()],build:{target:"chrome90",rollupOptions:{input:"source.html"},outDir:"docs",emptyOutDir:true}});

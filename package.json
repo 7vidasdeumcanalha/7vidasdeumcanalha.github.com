@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build && node -e \"require('fs').renameSync('docs/source.html','docs/index.html')\""
   },
   "dependencies": {
     "react": "19.2.6",
