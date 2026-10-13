@@ -1,2 +1,2 @@
-export type Song={id:string;title:string;genre:string;cover:string;youtube:string;spotify:string;link:string;published:boolean};export type Preview={id:string;title:string;cover:string;video:string;published:boolean};
+export type Song={id:string;title:string;genre:string;cover:string;youtube:string;spotify:string;link:string;published:boolean};export type Preview={id:string;title:string;cover:string;video:string;mediaType?:'audio'|'video';published:boolean};
 export type Catalog={previews?:Preview[];songs:Song[];instagram:string;youtube:string;spotify:string};
