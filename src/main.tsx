@@ -1,0 +1,10 @@
+import React,{useEffect,useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import MusicRoom from './room';
+import fallback from '../catalog.json';
+import type {Catalog} from '../lib/catalog';
+import './globals.css';
+const backend='https://sete-vidas-de-um-canalha.abreubigode1.chatgpt.site';
+function normalize(c:Catalog):Catalog{return {...c,songs:c.songs.filter(s=>s.published).map(s=>({...s,cover:s.cover.startsWith('/art/')?s.cover.replace(/\.png$/,'.webp'):s.cover.startsWith('/media/')?backend+s.cover:s.cover}))};}
+function App(){const [catalog,setCatalog]=useState(()=>normalize(fallback));useEffect(()=>{const abort=new AbortController();fetch(backend+'/api/public-catalog',{credentials:'omit',signal:abort.signal}).then(r=>{if(!r.ok)throw Error('Unavailable');return r.json();}).then(c=>setCatalog(normalize(c as Catalog))).catch(()=>{});return()=>abort.abort();},[]);return <MusicRoom catalog={catalog}/>;}
+createRoot(document.getElementById('root')!).render(<App/>);

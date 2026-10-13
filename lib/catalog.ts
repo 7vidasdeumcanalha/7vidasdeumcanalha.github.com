@@ -1,0 +1,1 @@
+export type Song={id:string;title:string;genre:string;cover:string;youtube:string;spotify:string;link:string;published:boolean};export type Catalog={songs:Song[];instagram:string;youtube:string;spotify:string};
