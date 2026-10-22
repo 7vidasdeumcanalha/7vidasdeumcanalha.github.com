@@ -12,7 +12,7 @@ function sp(link:string){try{return new URL(link).pathname.replace(/^\/intl-[^/]
 const sections:Section[]=['musicas','albuns','previas','sobre'];
 function normalize(text:string){return text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();}
 export default function MusicRoom({catalog}:{catalog:Catalog}){
- const [section,setSection]=useState<Section>('musicas'),[query,setQuery]=useState(''),[index,setIndex]=useState(0),[auto,setAuto]=useState(false),[mode,setMode]=useState('youtube'),[playerOpen,setPlayerOpen]=useState(false),[playing,setPlaying]=useState(false),[error,setError]=useState('');
+ const [section,setSection]=useState<Section>('musicas'),[query,setQuery]=useState(''),[index,setIndex]=useState(0),[auto,setAuto]=useState(true),[mode,setMode]=useState('youtube'),[playerOpen,setPlayerOpen]=useState(false),[playing,setPlaying]=useState(false),[error,setError]=useState('');
  const box=useRef<HTMLDivElement>(null),player=useRef<any>(null),autoRef=useRef(auto),catalogRef=useRef(catalog),startRequested=useRef(false);autoRef.current=auto;catalogRef.current=catalog;const song=catalog.songs[index]||catalog.songs[0];
  const pausePreviews=()=>document.querySelectorAll<HTMLMediaElement>('.compact-room .preview-player audio,.compact-room .preview-player video').forEach(media=>media.pause());
  const selectSection=(next:Section)=>{pausePreviews();setSection(next);if(location.hash!=='#'+next)history.pushState(null,'','#'+next);};
