@@ -1,0 +1,4 @@
+import {ArrowUpRight} from 'lucide-react';
+import type {Album} from '../lib/catalog';
+import {albumLinks,platformNames} from '../lib/album-platforms';
+export default function AlbumPlatformLinks({album}:{album:Album}){const links=albumLinks(album);if(!links.length)return null;return <div className="album-platform-choice"><p>Escolha onde ouvir</p><div className="album-platform-links">{links.map(({platform,url})=><a className="outline" key={platform+url} href={url} target="_blank" rel="noopener noreferrer" aria-label={'Ouvir '+album.title+' no '+platformNames[platform]}>{platform!=='other'?<img src={'/platforms/'+platform+'.svg'} width="18" height="18" alt="" aria-hidden="true"/>:<ArrowUpRight size={17} aria-hidden="true"/>}<span>{platformNames[platform]}</span><ArrowUpRight size={12} aria-hidden="true"/></a>)}</div></div>}
